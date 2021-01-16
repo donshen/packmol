@@ -59,10 +59,12 @@ subroutine gwalls(icart,irest)
     if(a2.gt.0.d0) gxcar(icart,2) = gxcar(icart,2) + scale * 2.d0 * a2
     if(a3.gt.0.d0) gxcar(icart,3) = gxcar(icart,3) + scale * 2.d0 * a3
   else if(ityperest(irest).eq.4) then
-    d = (xcart(icart,1)-restpars(irest,1))**2 + &
-        (xcart(icart,2)-restpars(irest,2))**2 + &
-        (xcart(icart,3)-restpars(irest,3))**2 - &
-        restpars(irest,4)**2
+    d = abs(sin((xcart(icart,1)-restpars(irest,1))/restpars(irest,4)) * &
+     	cos((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) + &
+        sin((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) * &
+		cos((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) + &
+        sin((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) * &
+		cos((xcart(icart,1)-restpars(irest,1))/restpars(irest,4))) - restpars(irest,5)/10
     if(d.gt.0.d0) then
       gxcar(icart,1) = gxcar(icart,1) + 4.d0 * scale2 * &
                        (xcart(icart,1)-restpars(irest,1))*d
@@ -123,10 +125,12 @@ subroutine gwalls(icart,irest)
       gxcar(icart,3) = gxcar(icart,3) + a1*a2*a4*a5*(a6-a3)
     end if
   else if(ityperest(irest).eq.8) then
-    d = (xcart(icart,1)-restpars(irest,1))**2 + &
-        (xcart(icart,2)-restpars(irest,2))**2 + &
-        (xcart(icart,3)-restpars(irest,3))**2 - &
-        restpars(irest,4)**2
+    d = abs(sin((xcart(icart,1)-restpars(irest,1))/restpars(irest,4)) * &
+     	cos((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) + &
+        sin((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) * &
+		cos((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) + &
+        sin((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) * &
+		cos((xcart(icart,1)-restpars(irest,1))/restpars(irest,4))) - restpars(irest,5)/10
     if(d.lt.0.d0) then
       gxcar(icart,1) = gxcar(icart,1) + 4.d0 * scale2 * &
                        (xcart(icart,1)-restpars(irest,1))*d

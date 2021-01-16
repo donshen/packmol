@@ -56,10 +56,12 @@ subroutine comprest(icart,f)
       a3 = dmax1(xcart(icart,3) - zmax, 0.d0)
       f = f + scale*(a1 * a1 + a2 * a2 + a3 * a3)   
     else if(ityperest(irest).eq.4) then     
-      w = (xcart(icart,1)-restpars(irest,1))**2 + &
-          (xcart(icart,2)-restpars(irest,2))**2 + &
-          (xcart(icart,3)-restpars(irest,3))**2 - &
-          restpars(irest,4)**2
+      w = abs(sin((xcart(icart,1)-restpars(irest,1))/restpars(irest,4)) * &
+		  cos((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) + &
+		  sin((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) * &
+		  cos((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) + &
+		  sin((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) * &
+		  cos((xcart(icart,1)-restpars(irest,1))/restpars(irest,4))) - restpars(irest,5)/10
       a1 = dmax1(w,0.d0)
       f = f + scale2*a1*a1
     else if(ityperest(irest).eq.5) then
@@ -99,10 +101,12 @@ subroutine comprest(icart,f)
       a6 = dmax1(zmax - xcart(icart,3),0.d0)
       f = f + a1*a2*a3*a4*a5*a6
     else if(ityperest(irest).eq.8) then
-      w = (xcart(icart,1)-restpars(irest,1))**2 + &
-          (xcart(icart,2)-restpars(irest,2))**2 + &
-          (xcart(icart,3)-restpars(irest,3))**2 - &
-          restpars(irest,4)**2
+      w = abs(sin((xcart(icart,1)-restpars(irest,1))/restpars(irest,4)) * &
+     	  cos((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) + &
+          sin((xcart(icart,2)-restpars(irest,2))/restpars(irest,4)) * &
+		  cos((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) + &
+          sin((xcart(icart,3)-restpars(irest,3))/restpars(irest,4)) * &
+		  cos((xcart(icart,1)-restpars(irest,1))/restpars(irest,4))) - restpars(irest,5)/10
       a1 = dmin1(w,0.d0)
       f = f + scale2*a1*a1
     else if(ityperest(irest).eq.9) then

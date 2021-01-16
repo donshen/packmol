@@ -559,6 +559,7 @@ subroutine getinp()
         read(keyword(iline,4),*,iostat=ioerr) restpars(irest,2)
         read(keyword(iline,5),*,iostat=ioerr) restpars(irest,3)
         read(keyword(iline,6),*,iostat=ioerr) restpars(irest,4)
+		read(keyword(iline,7),*,iostat=ioerr) restpars(irest,5)
       else if(keyword(iline,2).eq.'ellipsoid') then
         ityperest(irest) = 5
         read(keyword(iline,3),*,iostat=ioerr) restpars(irest,1)
@@ -619,6 +620,7 @@ subroutine getinp()
         read(keyword(iline,4),*,iostat=ioerr) restpars(irest,2)
         read(keyword(iline,5),*,iostat=ioerr) restpars(irest,3)
         read(keyword(iline,6),*,iostat=ioerr) restpars(irest,4)
+		read(keyword(iline,7),*,iostat=ioerr) restpars(irest,5)
       else if(keyword(iline,2).eq.'ellipsoid') then
         ityperest(irest) = 9
         read(keyword(iline,3),*,iostat=ioerr) restpars(irest,1)
